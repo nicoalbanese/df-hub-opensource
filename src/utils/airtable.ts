@@ -7,23 +7,23 @@ myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Cookie", "brw=brwy1TrDiZyNAsU5u");
 
 export const searchForBusiness = async (name: string) => {
-//   console.log("search function called for", name);
+  //   console.log("search function called for", name);
 
   const requestOptions = {
     method: "GET",
     headers: myHeaders,
-    redirect: "follow",
+    redirect: "follow" as RequestRedirect,
   };
 
   const res = await fetch(
     `https://api.airtable.com/v0/apptcOM65nkIWJy1l/Pipeline?filterByFormula=SEARCH("${name.toLowerCase()}", lower({Company}))`,
     requestOptions
   );
-//   console.log("res", res);
+  //   console.log("res", res);
   const data = await res.json();
-//   console.log("data", data);
+  //   console.log("data", data);
 
-  const formattedData = data.records.map((company) => {
+  const formattedData = data.records.map((company: any) => {
     return formatBusiness(company);
   });
 
@@ -33,7 +33,7 @@ export const searchForBusiness = async (name: string) => {
   return formattedData;
 };
 
-const formatBusiness = (rawBusiness) => {
+const formatBusiness = (rawBusiness: any) => {
   const fields = rawBusiness.fields;
   return {
     name: fields["Company"],
