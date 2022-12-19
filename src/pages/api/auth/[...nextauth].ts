@@ -15,6 +15,11 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    // async signIn({ user, account, profile, email, credentials }) {
+    //   const user = await prisma.user.findUnique({
+    //     data: { email: user.email },
+    //   });
+    // },
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
