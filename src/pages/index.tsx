@@ -4,36 +4,25 @@ import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
 import Navigation from "../components/navigation";
 import UniversalSearch from "../components/universalSearch";
-import { trpc } from "../utils/trpc";
 
 // import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const authStatus = trpc.auth.getAuthStatus.useQuery();
 
   const { data: sessionData } = useSession();
 
   if (sessionData?.user) {
-    if (authStatus.data?.authorised === true) {
-      return (
-        <main>
-          <div className="my-4 flex items-center justify-between">
-            <h1>Ascension Deaflow</h1>
-            <UniversalSearch />
-          </div>
-          <div>
-            <Navigation />
-          </div>
-        </main>
-      );
-    } else {
-      return (
-        <main>
-          <h1 className="mb-4">You are not authorised</h1>
-          <p>Please contact the admin to authorise your account</p>
-        </main>
-      );
-    }
+    return (
+      <main>
+        <div className="my-4 flex items-center justify-between">
+          <h1>Ascension Deaflow</h1>
+          <UniversalSearch />
+        </div>
+        <div>
+          <Navigation />
+        </div>
+      </main>
+    );
   }
 
   return (

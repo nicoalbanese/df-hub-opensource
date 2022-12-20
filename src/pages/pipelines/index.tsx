@@ -1,5 +1,3 @@
-import Link from "next/link";
-import React from "react";
 import Header from "../../components/header";
 import PipelineLinks from "../../components/pipelineLinks";
 

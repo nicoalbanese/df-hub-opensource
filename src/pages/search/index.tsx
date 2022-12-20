@@ -33,6 +33,7 @@ const PipelineSearch = () => {
 
   const queryAirtable = async (companyName: string) => {
     // add query logic here
+    setSearchQuery(companyName);
     setLoading(true);
     const results = await searchForBusiness(companyName);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
