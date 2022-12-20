@@ -1,26 +1,23 @@
-import React from "react";
-import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import UniversalSearch from "./universalSearch";
 
-const Header = () => {
-  const { data: sessionData } = useSession();
-
-  if (sessionData?.user) {
-    return (
-      <div
-        id="nav"
-        className="mb-4 flex items-center justify-between border-b border-slate-500 pb-4"
-      >
-        <div>
-          You are logged in as{" "}
-          <span className="font-bold">{sessionData.user.email}</span>
+const Header = ({ title = "Page" }) => {
+  const router = useRouter();
+  return (
+    <>
+      {router.pathname !== "/" && (
+        <div id="header">
+          <Link href="/" className="hover:underline">
+            back
+          </Link>
         </div>
-        <button onClick={() => signOut()} className={"btn-base"}>
-          Sign out
-        </button>
+      )}
+      <div className="my-4 flex justify-between">
+        <h1>{title}</h1>
+        <UniversalSearch />
       </div>
-    );
-  }
-  return <></>;
+    </>
+  );
 };
-
 export default Header;

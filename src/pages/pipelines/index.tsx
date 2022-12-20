@@ -1,14 +1,14 @@
 import Link from "next/link";
 import React from "react";
+import Header from "../../components/header";
+import PipelineLinks from "../../components/pipelineLinks";
 
 const Pipelines = () => {
   return (
     <div>
-      <div id="header">
-        <Link href="/">back</Link>
-      </div>
+      <Header title="Pipelines" />
       <div id="body">
-        <h1>Pipelines</h1>
+        <PipelineLinks />
       </div>
     </div>
   );

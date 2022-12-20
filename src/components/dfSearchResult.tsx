@@ -1,13 +1,19 @@
-import { BanknotesIcon, CalendarIcon, FlagIcon } from "@heroicons/react/24/outline";
+import { BanknotesIcon, CalendarIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { type Company } from "../utils/airtable";
-
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const statusColor = (status: string) => {
   switch (status) {
     case "Passed":
       return "bg-red-300";
+      break;
+    case "To Reject (rejection note required)":
+      return "bg-red-100";
+      break;
+    case "Post Call - Action Required":
+      return "bg-orange-200";
       break;
     case "Invested":
       return "bg-green-300";
@@ -19,14 +25,14 @@ const statusColor = (status: string) => {
 };
 
 const SearchResult = ({ company }: { company: Company }) => {
-  const router = useRouter();
+  dayjs.extend(relativeTime);
+
   return (
     <li className=" rounded-md">
       <Link
         href={company.recordUrl}
         target="_blank"
         className="block hover:bg-slate-300"
-        onClick={() => router.push("/")}
       >
         <div className="px-4 py-4 sm:px-6">
           <div className="flex items-center justify-between">
@@ -75,7 +81,7 @@ const SearchResult = ({ company }: { company: Company }) => {
                 aria-hidden="true"
               />
               <p>
-                last status change {company.lastStatusChange}
+                last status change {dayjs(company.lastStatusChange).fromNow()}
                 {/* <time dateTime={company.lastStatusChange}>date</time> */}
               </p>
             </div>

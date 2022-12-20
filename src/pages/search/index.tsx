@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
@@ -10,7 +9,7 @@ import { type Company, searchForBusiness } from "../../utils/airtable";
 const PipelineSearch = () => {
   const router = useRouter();
   const { companyName } = router.query;
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>(companyName as string);
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
   const [queryResultStatus, setQueryResultStatus] = useState<
@@ -19,7 +18,8 @@ const PipelineSearch = () => {
 
   useHotkeys("meta+enter", () =>
     window.open(
-      `https://airtable.com/shrUB5NNy0PGzPjQT?prefill_Company=${companyName}`, "_blank"
+      `https://airtable.com/shrUB5NNy0PGzPjQT?prefill_Company=${searchQuery}`,
+      "_blank"
     )
   );
 

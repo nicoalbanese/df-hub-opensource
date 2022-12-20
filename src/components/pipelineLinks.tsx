@@ -3,86 +3,53 @@ import {
   PlusIcon,
   PhoneIcon,
   FolderIcon,
-  PencilSquareIcon,
   CalculatorIcon,
-  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const navigation = [
   {
-    name: "Pipelines",
-    href: "/pipelines",
+    name: "Advanced (TE Team)",
+    href: "https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viwD6Q6hcF81rk0a5?blocks=hide",
     icon: FolderIcon,
     current: false,
-    isExternalLink: false,
+    isExternalLink: true,
   },
   {
-    name: "New Company",
-    href: "https://airtable.com/shrUB5NNy0PGzPjQT",
+    name: "Blended",
+    href: "https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viwg63PSZQ8mWWeID?blocks=hide",
     icon: PlusIcon,
     current: false,
     isExternalLink: true,
   },
   {
-    name: "New Note",
-    href: "https://airtable.com/shrJsjMXUJtKADz11",
+    name: "EIS",
+    href: "https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viw4KE3PCFVTnMOE9?blocks=hide",
     icon: PhoneIcon,
     current: false,
     isExternalLink: true,
   },
   {
-    name: "New Score",
-    href: "#",
-    icon: CalculatorIcon,
-    current: false,
-    isExternalLink: true,
-  },
-];
-const navigationForNico = [
-  {
-    name: "Pipelines",
-    href: "/pipelines",
-    icon: FolderIcon,
-    current: false,
-    isExternalLink: false,
-  },
-  {
-    name: "New Company",
-    href: "https://airtable.com/shrUB5NNy0PGzPjQT",
-    icon: PlusIcon,
-    current: false,
-    isExternalLink: true,
-  },
-  {
-    name: "New Note",
-    href: "https://airtable.com/shrJsjMXUJtKADz11",
-    icon: PhoneIcon,
-    current: false,
-    isExternalLink: true,
-  },
-  {
-    name: "New Score",
-    href: "#",
+    name: "Conduit",
+    href: "https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viw6QS0LnnRFXIoEM?blocks=hide",
     icon: CalculatorIcon,
     current: false,
     isExternalLink: true,
   },
   {
-    name: "New Rejection",
-    href: "https://airtable.com/shrJpMPqeurEpxWoh",
-    icon: PencilSquareIcon,
+    name: "Fund III",
+    href: "https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viwyxsIGMCDxCVtSz?blocks=hide",
+    icon: CalculatorIcon,
     current: false,
     isExternalLink: true,
   },
-  // {
-  //   name: "Triage Early Pipeline",
-  //   href: "https://airtable.com/shrJpMPqeurEpxWoh",
-  //   icon: MagnifyingGlassIcon,
-  //   current: false,
-  //   isExternalLink: true,
-  // },
+  {
+    name: "Life",
+    href: "https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viweSopifPeYfZBWM?blocks=hide",
+    icon: CalculatorIcon,
+    current: false,
+    isExternalLink: true,
+  },
 ];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -91,15 +58,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navigation() {
-  const { data: sessionData } = useSession();
+export default function PipelineLinks() {
   return (
     <nav className="space-y-1">
-      {sessionData?.user?.email == "nico@ascension.vc" ? (
-        <NavItems items={navigationForNico} />
-      ) : (
-        <NavItems items={navigation} />
-      )}
+      <NavItems items={navigation} />
     </nav>
   );
 }
@@ -120,7 +82,7 @@ const NavItems = ({ items }) => {
           )}
           aria-current={item.current ? "page" : undefined}
         >
-          <item.icon
+          {/* <item.icon
             className={classNames(
               item.current
                 ? "text-gray-500"
@@ -128,7 +90,7 @@ const NavItems = ({ items }) => {
               "-ml-1 mr-3 h-6 w-6 flex-shrink-0"
             )}
             aria-hidden="true"
-          />
+          /> */}
           <span className="truncate">{item.name}</span>
         </Link>
       ))}

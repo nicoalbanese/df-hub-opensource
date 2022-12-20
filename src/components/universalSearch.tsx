@@ -37,7 +37,7 @@ export default function UniversalSearch({
           value={searchQuery}
           ref={inputRef}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="search"
+          placeholder="company search"
           className="block w-full rounded-lg border-gray-300 pr-12 text-slate-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
         <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
