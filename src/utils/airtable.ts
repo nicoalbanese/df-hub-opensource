@@ -1,3 +1,17 @@
+export type Company = {
+  name: string;
+  description: string;
+  website: string;
+  amountRaising: string;
+  fund: string;
+  status: string;
+  statusChris: string;
+  recordUrl: string;
+  deck: string;
+  lastStatusChange: string | null;
+};
+
+
 const myHeaders = new Headers();
 myHeaders.append(
   "Authorization",
@@ -23,14 +37,14 @@ export const searchForBusiness = async (name: string) => {
   const data = await res.json();
   //   console.log("data", data);
 
-  const formattedData = data.records.map((company: any) => {
+  const formattedData = data.records.map((company: Company) => {
     return formatBusiness(company);
   });
 
   if (data.records.length < 1) {
-    return "No businesses found...";
+    return { status: "no results", companies: [] };
   }
-  return formattedData;
+  return { status: "success", companies: formattedData as Company[] };
 };
 
 const formatBusiness = (rawBusiness: any) => {
@@ -48,5 +62,5 @@ const formatBusiness = (rawBusiness: any) => {
     lastStatusChange: fields["Last Status Change"].error
       ? null
       : fields["Last Status Change"],
-  };
+  } as Company;
 };

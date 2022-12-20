@@ -3,8 +3,14 @@ import { useRouter } from "next/router";
 import { type FormEvent, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
-export default function UniversalSearch() {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+export default function UniversalSearch({
+  initialSearchQuery = "",
+  disabled = false,
+  queryAirtable = (companyName: string) => {
+    console.log("default function", companyName);
+  },
+}) {
+  const [searchQuery, setSearchQuery] = useState<string>(initialSearchQuery);
   const router = useRouter();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -15,12 +21,16 @@ export default function UniversalSearch() {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push(`/search?companyName=${searchQuery}`);
+    if (router.route == "/search") {
+      queryAirtable(searchQuery);
+    }
   };
 
   return (
     <div className="max-w-1/4">
       <form className="relative mt-1 flex items-center" onSubmit={handleSearch}>
         <input
+          disabled={disabled}
           type="text"
           name="search"
           id="search"

@@ -5,6 +5,7 @@ import {
   FolderIcon,
   PencilSquareIcon,
   CalculatorIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -72,6 +73,13 @@ const navigationForNico = [
     name: "New Rejection",
     href: "https://airtable.com/shrJpMPqeurEpxWoh",
     icon: PencilSquareIcon,
+    current: false,
+    isExternalLink: true,
+  },
+  {
+    name: "Triage Early Pipeline",
+    href: "https://airtable.com/shrJpMPqeurEpxWoh",
+    icon: MagnifyingGlassIcon,
     current: false,
     isExternalLink: true,
   },
