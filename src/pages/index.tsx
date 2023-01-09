@@ -15,7 +15,7 @@ const Home: NextPage = () => {
     return (
       <main>
         <div className="my-4 flex items-center justify-between">
-          <h1>Ascension Deaflow</h1>
+          <h1 className="">Ascension Deaflow</h1>
           <UniversalSearch />
         </div>
         <div>

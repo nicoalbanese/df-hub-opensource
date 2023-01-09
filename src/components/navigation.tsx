@@ -32,13 +32,13 @@ const navigation = [
     current: false,
     isExternalLink: true,
   },
-  {
-    name: "New Score",
-    href: "#",
-    icon: CalculatorIcon,
-    current: false,
-    isExternalLink: true,
-  },
+  // {
+  //   name: "New Score",
+  //   href: "/score/new",
+  //   icon: CalculatorIcon,
+  //   current: false,
+  //   isExternalLink: true,
+  // },
 ];
 const navigationForNico = [
   {
@@ -62,13 +62,13 @@ const navigationForNico = [
     current: false,
     isExternalLink: true,
   },
-  {
-    name: "New Score",
-    href: "#",
-    icon: CalculatorIcon,
-    current: false,
-    isExternalLink: true,
-  },
+  // {
+  //   name: "New Score",
+  //   href: "/score/new",
+  //   icon: CalculatorIcon,
+  //   current: false,
+  //   isExternalLink: true,
+  // },
   {
     name: "New Rejection",
     href: "https://airtable.com/shrJpMPqeurEpxWoh",
