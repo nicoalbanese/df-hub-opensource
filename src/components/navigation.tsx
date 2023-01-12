@@ -32,6 +32,13 @@ const navigation = [
     current: false,
     isExternalLink: true,
   },
+  {
+    name: "Triage Early Pipeline",
+    href: "/triage",
+    icon: MagnifyingGlassIcon,
+    current: false,
+    isExternalLink: false,
+  },
   // {
   //   name: "New Score",
   //   href: "/score/new",
