@@ -28,7 +28,10 @@ export default function UniversalSearch({
 
   return (
     <div className="">
-      <form className="relative mt-1 flex items-center justify-end" onSubmit={handleSearch}>
+      <form
+        className="relative mt-1 flex items-center justify-end"
+        onSubmit={handleSearch}
+      >
         <input
           disabled={disabled}
           type="text"
@@ -38,9 +41,11 @@ export default function UniversalSearch({
           ref={inputRef}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="search"
-          className="block sm:w-full w-2/3 rounded-lg border-gray-300 pr-12 text-slate-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className={`block ${(router.pathname = "/search"
+            ? " w-full"
+            : "w-2/3 sm:w-full")} rounded-lg border-gray-300 pr-12 text-slate-800 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm`}
         />
-        <div className="absolute inset-y-0 right-0 sm:flex hidden py-1.5 pr-1.5 ">
+        <div className="absolute inset-y-0 right-0 hidden py-1.5 pr-1.5 sm:flex ">
           <kbd className="inline-flex items-center rounded border border-gray-200 px-2 font-sans text-sm font-medium text-gray-400">
             ⌘K
           </kbd>

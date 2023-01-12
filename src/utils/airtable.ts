@@ -11,7 +11,6 @@ export type Company = {
   lastStatusChange: string | null;
 };
 
-
 const myHeaders = new Headers();
 myHeaders.append(
   "Authorization",
@@ -184,3 +183,126 @@ const formatBusiness = (rawBusiness: any) => {
 //     id: rawBusiness["id"],
 //   };
 // };
+
+// --------
+// --------
+// --------
+// triage section
+
+export type TriageCompany = {
+  name: string;
+  amountRaising: number;
+  website: string;
+  deck: string;
+  dateAdded: string;
+  isFirstRound: boolean;
+  problem: string;
+  description: string;
+  id: string;
+  recordURL: string;
+};
+
+const fetchAirtable = async (userEmail: string) => {
+  // console.log(userEmail);
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  const AIRTABLE_URL = `https://api.airtable.com/v0/apptcOM65nkIWJy1l/Pipeline?view=${encodeURI(
+    "(Quick Triage API 2023)"
+  )}&maxRecords=1&filterByFormula=${encodeURI(
+    `SEARCH("${userEmail}",{Triage Emails Joined})=0`
+  )}`;
+  // console.log(AIRTABLE_URL);
+
+  // AIRTABLE_URL = urlWithoutSort;
+  const res = await fetch(AIRTABLE_URL, requestOptions as RequestInit);
+  // console.log(res);
+  const data = await res.json();
+  return data;
+};
+
+export const fetchDF = async (userEmail: string) => {
+  const data = await fetchAirtable(userEmail);
+  //   return data;
+
+  const structuredData = data.records.map((company: any): TriageCompany => {
+    return {
+      name: company.fields.Company,
+      amountRaising: company.fields["Amount Raising"],
+      website: company.fields["Website (for extension)"],
+      deck: company.fields["Link to Deck"],
+      dateAdded: company.fields["Date Added"],
+      isFirstRound: company.fields["First Round?"],
+      problem: company.fields["Problem in Focus"],
+      description: company.fields["Description"],
+      id: company.id,
+      recordURL: `https://airtable.com/apptcOM65nkIWJy1l/tblltzjPiwy7gOkKE/viwg63PSZQ8mWWeID/${company.id}?blocks=hide`,
+    };
+  });
+  return structuredData as Company[];
+};
+
+const patchAirtable = async (
+  companyId: string,
+  verdict: string,
+  userId: string,
+  comment: string
+) => {
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    redirect: "follow",
+    body: JSON.stringify({
+      records: [
+        {
+          fields: {
+            Status: verdict,
+            Person: [userId],
+            Company: [companyId],
+            Comments: comment,
+          },
+        },
+      ],
+    }),
+  };
+  const AIRTABLE_URL =
+    "https://api.airtable.com/v0/apptcOM65nkIWJy1l/Triage%20Thoughts";
+
+  const res = await fetch(AIRTABLE_URL, requestOptions as RequestInit);
+
+  const data = await res.json();
+  return data;
+};
+
+export const voteOnBusiness = async (
+  userEmail: string,
+  companyId: string,
+  verdict: string,
+  comment: string
+) => {
+  // console.log(userEmail, companyId, verdict);
+
+  // POST Request to airtabl
+  return await patchAirtable(companyId, verdict, userEmail, comment);
+};
+
+export const getTeamRecordId = async (email: string) => {
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  const AIRTABLE_URL = `https://api.airtable.com/v0/apptcOM65nkIWJy1l/Ascension%20Team?view=${encodeURI(
+    "teamAPI"
+  )}&maxRecords=1&filterByFormula=${encodeURI(`{Email}="${email}"`)}`;
+  // console.log(AIRTABLE_URL);
+
+  // AIRTABLE_URL = urlWithoutSort;
+  const res = await fetch(AIRTABLE_URL, requestOptions as RequestInit);
+  // console.log("user search response -> ", res);
+  const data = await res.json();
+  return data.records[0].id;
+};

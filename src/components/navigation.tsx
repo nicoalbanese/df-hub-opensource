@@ -76,13 +76,13 @@ const navigationForNico = [
     current: false,
     isExternalLink: true,
   },
-  // {
-  //   name: "Triage Early Pipeline",
-  //   href: "https://airtable.com/shrJpMPqeurEpxWoh",
-  //   icon: MagnifyingGlassIcon,
-  //   current: false,
-  //   isExternalLink: true,
-  // },
+  {
+    name: "Triage Early Pipeline",
+    href: "/triage",
+    icon: MagnifyingGlassIcon,
+    current: false,
+    isExternalLink: false,
+  },
 ];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
