@@ -190,7 +190,7 @@ const DetailedCompanyInfo = ({ company }: any) => {
                             .split(" ")[0]
                             .toLowerCase() +
                           " " +
-                          officer.name.split(", ")[0].toLowerCase()
+                          officer.name.split(", ")[0].toLowerCase() + "&origin=SWITCH_SEARCH_VERTICAL&sid=m%3A!"
                         }
                         target="_blank"
                         style={{ textDecoration: "none" }}
