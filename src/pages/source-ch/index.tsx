@@ -2,8 +2,7 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-
-const EXCLUSION_LIST = "technologies technology IT"
+const EXCLUSION_LIST = "technologies technology IT";
 
 export default function Home() {
   const [results, setResults] = useState([]);
@@ -107,7 +106,6 @@ const SearchResult = ({
   const [open, setOpen] = useState(_open);
   const [fetching, setFetching] = useState(true);
   const [companyDetails, setCompanyDetails] = useState({});
-  
 
   const getCompanyInfo = async () => {
     setOpen(true);
@@ -172,42 +170,55 @@ const DetailedCompanyInfo = ({ company }: any) => {
             <div>
               {officer.name && (
                 <>
-                  <span className="mr-1">
-                    {officer.name.split(", ")[1]} {officer.name.split(", ")[0]}
-                  </span>
-                  {officer.date_of_birth && (
-                    <span className="mr-2 text-sm text-slate-600">
-                      {" "}
-                      (dob: {officer.date_of_birth.year})
-                    </span>
+                  {officer.name.includes(",") ? (
+                    <>
+                      <span className="mr-1">
+                        {officer.name.split(", ")[1]}{" "}
+                        {officer.name.split(", ")[0]}
+                      </span>
+                      {officer.date_of_birth && (
+                        <span className="mr-2 text-sm text-slate-600">
+                          {" "}
+                          (dob: {officer.date_of_birth.year})
+                        </span>
+                      )}
+                      <Link
+                        href={
+                          "https://www.linkedin.com/search/results/all/?keywords=" +
+                          officer.name
+                            .split(", ")[1]
+                            .split(" ")[0]
+                            .toLowerCase() +
+                          " " +
+                          officer.name.split(", ")[0].toLowerCase()
+                        }
+                        target="_blank"
+                        style={{ textDecoration: "none" }}
+                        className="mr-2 rounded-md bg-[#0A66C2] py-1 px-1.5 text-xs text-[white] hover:opacity-70"
+                      >
+                        LinkedIn
+                      </Link>
+                      <Link
+                        href={
+                          "https://twitter.com/search?q=" +
+                          officer.name
+                            .split(", ")[1]
+                            .split(" ")[0]
+                            .toLowerCase() +
+                          " " +
+                          officer.name.split(", ")[0].toLowerCase() +
+                          "&src=typed_query"
+                        }
+                        target="_blank"
+                        style={{ textDecoration: "none" }}
+                        className="mr-2 rounded-md bg-[#1DA1F2] py-1 px-1.5 text-xs text-[white] hover:opacity-70"
+                      >
+                        Twitter
+                      </Link>
+                    </>
+                  ) : (
+                    <>{officer.name}</>
                   )}
-                  <Link
-                    href={
-                      "https://www.linkedin.com/search/results/all/?keywords=" +
-                      officer.name.split(", ")[1].split(" ")[0].toLowerCase() +
-                      " " +
-                      officer.name.split(", ")[0].toLowerCase()
-                    }
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                    className="mr-2 rounded-md bg-[#0A66C2] py-1 px-1.5 text-xs text-[white] hover:opacity-70"
-                  >
-                    LinkedIn
-                  </Link>
-                  <Link
-                    href={
-                      "https://twitter.com/search?q=" +
-                      officer.name.split(", ")[1].split(" ")[0].toLowerCase() +
-                      " " +
-                      officer.name.split(", ")[0].toLowerCase() +
-                      "&src=typed_query"
-                    }
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                    className="mr-2 rounded-md bg-[#1DA1F2] py-1 px-1.5 text-xs text-[white] hover:opacity-70"
-                  >
-                    Twitter
-                  </Link>
                 </>
               )}
             </div>
