@@ -6,6 +6,7 @@ import {
   PencilSquareIcon,
   CalculatorIcon,
   MagnifyingGlassIcon,
+  RocketLaunchIcon,
 } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -36,6 +37,13 @@ const navigation = [
     name: "Triage Early Pipeline",
     href: "/triage",
     icon: MagnifyingGlassIcon,
+    current: false,
+    isExternalLink: false,
+  },
+  {
+    name: "Source Companies House",
+    href: "/source-ch",
+    icon: RocketLaunchIcon,
     current: false,
     isExternalLink: false,
   },
@@ -87,6 +95,13 @@ const navigationForNico = [
     name: "Triage Early Pipeline",
     href: "/triage",
     icon: MagnifyingGlassIcon,
+    current: false,
+    isExternalLink: false,
+  },
+  {
+    name: "Source Companies House",
+    href: "/source-ch",
+    icon: RocketLaunchIcon,
     current: false,
     isExternalLink: false,
   },
