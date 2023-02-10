@@ -127,7 +127,7 @@ const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
       </div>
       <div
         id="bottom"
-        className="mt-4 w-full border-t border-slate-500 py-4 pr-8"
+        className="mt-4 w-full border-t border-slate-500 py-4"
       >
         <h3>Thoughts</h3>
         <div className="my-0 flex w-full items-center justify-center">

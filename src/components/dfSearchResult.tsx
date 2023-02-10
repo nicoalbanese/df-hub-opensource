@@ -52,7 +52,7 @@ const SearchResult = ({ company }: { company: Company }) => {
       >
         {company.website && (
           <div>
-            <Link className={buttonStyles} href={company.website}>
+            <Link className={buttonStyles} href={company.website} target="_blank">
               <span>Website</span>
               <GlobeAltIcon className="ml-2 -mr-0.5 h-4 w-4" aria-hidden="true" />
             </Link>
@@ -60,7 +60,7 @@ const SearchResult = ({ company }: { company: Company }) => {
         )}
         {company.deck && (
           <div>
-            <Link className={buttonStyles} href={company.deck}>
+            <Link className={buttonStyles} href={company.deck} target="_blank">
               <span>Deck</span>
               <PresentationChartBarIcon className="ml-2 -mr-0.5 h-4 w-4" aria-hidden="true" />
             </Link>
@@ -68,7 +68,7 @@ const SearchResult = ({ company }: { company: Company }) => {
         )}
         {company.recordUrl && (
           <div>
-            <Link className={buttonStyles} href={company.recordUrl}>
+            <Link className={buttonStyles} href={company.recordUrl} target="_blank">
               <span>Airtable</span>
               <DocumentMagnifyingGlassIcon className="ml-2 -mr-0.5 h-4 w-4" aria-hidden="true" />
             </Link>
