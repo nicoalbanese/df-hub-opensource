@@ -45,7 +45,6 @@ const Header = () => {
   );
 };
 
-
 const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
   company,
 }: {
@@ -90,10 +89,17 @@ const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
             sectionName="Amount Raising"
             body={"£".concat(company.amountRaising.toLocaleString())}
           />
-          <DetailedSection
-            sectionName="First raise?"
-            body={company.isFirstRound.toString()}
-          />
+          {company.isFirstRound ? (
+            <DetailedSection
+              sectionName="First raise?"
+              body={company.isFirstRound.toString()}
+            />
+          ) : (
+            <DetailedSection
+              sectionName=""
+              body={""}
+            />
+          )}
 
           <DetailedSection
             sectionName="Description"
@@ -181,7 +187,7 @@ const DetailedSection = ({
   href?: string;
 }) => {
   return (
-    <div className="border-t border-b border-slate-500 py-2">
+    <div className="border-t border-b border-slate-500 py-2 pr-4">
       <h5 className="mb-1 text-xs font-bold uppercase text-slate-400">
         {sectionName}
       </h5>
