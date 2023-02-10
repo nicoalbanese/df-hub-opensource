@@ -102,19 +102,6 @@ const SearchResult = ({ company }: { company: Company }) => {
               />
               {company.fund ? company.fund : "No fund set"}
             </p>
-            {/* {company.website && (
-                <Link
-                  className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6"
-                  href={company.website}
-                  target="_blank"
-                >
-                  <MapPinIcon
-                    className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-                    aria-hidden="true"
-                  />
-                  website
-                </Link>
-              )} */}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
             <CalendarIcon

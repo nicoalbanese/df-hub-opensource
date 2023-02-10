@@ -8,8 +8,9 @@ import {
   MagnifyingGlassIcon,
   RocketLaunchIcon,
 } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+
+import settings from "../../USER_CONFIG/settings.json";
 
 const navigation = [
   {
@@ -21,32 +22,26 @@ const navigation = [
   },
   {
     name: "New Company",
-    href: "https://airtable.com/shrUB5NNy0PGzPjQT",
+    href: settings.default_forms.new_company.link,
     icon: PlusIcon,
     current: false,
     isExternalLink: true,
   },
   {
     name: "New Note",
-    href: "https://airtable.com/shrJsjMXUJtKADz11",
+    href: settings.default_forms.new_note.link,
     icon: PhoneIcon,
     current: false,
     isExternalLink: true,
   },
   {
-    name: "Triage Early Pipeline",
+    name: "Triage Website Applications",
     href: "/triage",
     icon: MagnifyingGlassIcon,
     current: false,
     isExternalLink: false,
   },
-  {
-    name: "Source Companies House",
-    href: "/source-ch",
-    icon: RocketLaunchIcon,
-    current: false,
-    isExternalLink: false,
-  },
+
   // {
   //   name: "New Score",
   //   href: "/score/new",
@@ -54,57 +49,6 @@ const navigation = [
   //   current: false,
   //   isExternalLink: true,
   // },
-];
-const navigationForNico = [
-  {
-    name: "Pipelines",
-    href: "/pipelines",
-    icon: FolderIcon,
-    current: false,
-    isExternalLink: false,
-  },
-  {
-    name: "New Company",
-    href: "https://airtable.com/shrUB5NNy0PGzPjQT",
-    icon: PlusIcon,
-    current: false,
-    isExternalLink: true,
-  },
-  {
-    name: "New Note",
-    href: "https://airtable.com/shrJsjMXUJtKADz11",
-    icon: PhoneIcon,
-    current: false,
-    isExternalLink: true,
-  },
-  // {
-  //   name: "New Score",
-  //   href: "/score/new",
-  //   icon: CalculatorIcon,
-  //   current: false,
-  //   isExternalLink: true,
-  // },
-  {
-    name: "New Rejection",
-    href: "https://airtable.com/shrJpMPqeurEpxWoh",
-    icon: PencilSquareIcon,
-    current: false,
-    isExternalLink: true,
-  },
-  {
-    name: "Triage Early Pipeline",
-    href: "/triage",
-    icon: MagnifyingGlassIcon,
-    current: false,
-    isExternalLink: false,
-  },
-  {
-    name: "Source Companies House",
-    href: "/source-ch",
-    icon: RocketLaunchIcon,
-    current: false,
-    isExternalLink: false,
-  },
 ];
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -114,14 +58,10 @@ function classNames(...classes) {
 }
 
 export default function Navigation() {
-  const { data: sessionData } = useSession();
+  // const { data: sessionData } = useSession();
   return (
     <nav className="space-y-1">
-      {sessionData?.user?.email == "nico@ascension.vc" ? (
-        <NavItems items={navigationForNico} />
-      ) : (
-        <NavItems items={navigation} />
-      )}
+      <NavItems items={navigation} />
     </nav>
   );
 }

@@ -45,38 +45,6 @@ const Header = () => {
   );
 };
 
-// const BUTTON_OPTIONS = [
-//   {
-//     buttonTitle: "Like",
-//     decision: "Like",
-//     classes: "border-green-500 bg-green-500 text-slate-900",
-//   },
-//   {
-//     buttonTitle: "On the fence",
-//     decision: "On the fence",
-//     classes: "border-orange-400 bg-orange-400 text-white",
-//   },
-//   {
-//     buttonTitle: "Don't like",
-//     decision: "Dislike",
-//     classes: "border-red-500 bg-red-500 text-white",
-//   },
-//   {
-//     buttonTitle: "Conduit",
-//     decision: "Share with Conduit Fund",
-//     classes: "border-red-500 bg-red-500 text-white",
-//   },
-//   {
-//     buttonTitle: "Life Fund",
-//     decision: "Share with Life Fund",
-//     classes: "border-red-500 bg-red-500 text-white",
-//   },
-//   {
-//     buttonTitle: "Don't like",
-//     decision: "Dislike",
-//     classes: "border-red-500 bg-red-500 text-white",
-//   },
-// ];
 
 const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
   company,
@@ -300,9 +268,9 @@ const decisionOptions = [
   { id: 1, title: "Like", value: "Like" },
   { id: 2, title: "Dislike", value: "Dislike" },
   { id: 3, title: "Undecided", value: "On the fence" },
-  { id: 4, title: "Conduit", value: "Share with Conduit" },
-  { id: 5, title: "Life", value: "Share with Life Fund" },
-  { id: 6, title: "Fund III", value: "Share with Fund III" },
+  // { id: 4, title: "Conduit", value: "Share with Conduit" },
+  // { id: 5, title: "Life", value: "Share with Life Fund" },
+  // { id: 6, title: "Fund III", value: "Share with Fund III" },
 ];
 
 function classNames(...classes: string[]) {
@@ -314,7 +282,7 @@ function DecisionRadioGroup({ selectedDecision, setSelectedDecision }) {
     <RadioGroup value={selectedDecision} onChange={setSelectedDecision}>
       {/* <RadioGroup.Label className=" font-medium text-gray-300 text-sm">Decision</RadioGroup.Label> */}
 
-      <div className="my-4 grid grid-cols-1 gap-y-6 sm:grid-cols-6 sm:gap-x-2">
+      <div className="my-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-2">
         {decisionOptions.map((decision) => (
           <RadioGroup.Option
             key={decision.id}

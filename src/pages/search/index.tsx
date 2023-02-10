@@ -74,7 +74,7 @@ const PipelineSearch = () => {
 
             {queryResultStatus === "no results" && (
               <div className="mt-4">
-                No results found... press cmd+enter to add {companyName} to the
+                No results found... press <span className="font-bold">cmd+enter</span> to add <span className="font-fold bg-indigo-600 p-1 rounded-md mx-1">"{companyName}"</span> to the
                 pipeline{" "}
               </div>
             )}

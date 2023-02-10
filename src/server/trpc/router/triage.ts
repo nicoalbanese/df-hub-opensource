@@ -33,6 +33,7 @@ export const triageRouter = router({
       });
 
       if (currentUser?.airtableRecordId) {
+        console.log(currentUser.airtableRecordId);
         const res = await voteOnBusiness(
           currentUser?.airtableRecordId as string,
           input.companyId,
@@ -42,6 +43,7 @@ export const triageRouter = router({
         return { res };
       } else {
         const userId = await getTeamRecordId(currentUser?.email as string);
+        console.log(userId);
         await ctx.prisma.user.update({
           where: { email: ctx.session?.user?.email as string },
           data: { airtableRecordId: userId },

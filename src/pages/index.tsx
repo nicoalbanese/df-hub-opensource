@@ -5,17 +5,23 @@ import { signIn, useSession } from "next-auth/react";
 import Navigation from "../components/navigation";
 import UniversalSearch from "../components/universalSearch";
 
+import settings from "../../USER_CONFIG/settings.json";
+
 // import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-
   const { data: sessionData } = useSession();
 
   if (sessionData?.user) {
     return (
       <main>
         <div className="my-4 flex items-center justify-between">
-          <h1 className="">Ascension Deaflow</h1>
+          <h1 className="">
+            {settings.company_name.length > 0
+              ? settings.company_name
+              : "*PLEASE FILL IN SETTINGS.JSON*"}{" "}
+            Deaflow
+          </h1>
           <UniversalSearch />
         </div>
         <div>
