@@ -7,6 +7,7 @@ import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
 import AuthHeader from "../components/authStatusHeader";
 import Head from "next/head";
+import settings from "../../USER_CONFIG/settings.json";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -15,7 +16,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <Head>
-        <title>Ascension Dealflow</title>
+        <title>
+          {settings.company_name ? settings.company_name : ""} Dealflow
+        </title>
         <link rel="shortcut icon" href="/static/favicon.ico" />
       </Head>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

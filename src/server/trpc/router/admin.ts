@@ -7,9 +7,7 @@ export const adminRouter = router({
       where: { email: ctx.session?.user?.email as string },
     });
     if (currentUser?.admin) {
-      const users = await ctx.prisma.user.findMany({
-        // select: { approved: true, name: true, email: true },
-      });
+      const users = await ctx.prisma.user.findMany({orderBy: {id: "asc"}});
       return users;
     }
     return [];
