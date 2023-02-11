@@ -9,11 +9,22 @@ export const authRouter = router({
       where: { email: ctx.session?.user?.email as string },
     });
 
+    const userAuthStatus = {
+      authorised: false,
+      admin: false,
+    };
     if (currentUser?.approved) {
-      return { authorised: true };
+      userAuthStatus.authorised = true;
     } else {
-      return { authorised: false };
+      userAuthStatus.authorised = false;
     }
+    if (currentUser?.admin) {
+      userAuthStatus.admin = true;
+    } else {
+      userAuthStatus.admin = false;
+    }
+
+    return userAuthStatus;
   }),
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";

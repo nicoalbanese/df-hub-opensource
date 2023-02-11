@@ -1,4 +1,4 @@
-import settings from "../../USER_CONFIG/settings.json"
+import settings from "../../USER_CONFIG/settings.json";
 
 export type Company = {
   name: string;
@@ -31,7 +31,9 @@ export const searchForBusiness = async (name: string) => {
   };
 
   const res = await fetch(
-    `https://api.airtable.com/v0/${settings.app_id}/Pipeline?filterByFormula=SEARCH("${name.toLowerCase()}", lower({Company}))`,
+    `https://api.airtable.com/v0/${
+      settings.app_id
+    }/Pipeline?filterByFormula=SEARCH("${name.toLowerCase()}", lower({Company}))`,
     requestOptions
   );
   //   console.log("res", res);
@@ -65,7 +67,6 @@ const formatBusiness = (rawBusiness: any) => {
   } as Company;
 };
 
-
 // --------
 // --------
 // --------
@@ -92,7 +93,9 @@ const fetchAirtable = async (userEmail: string) => {
     headers: myHeaders,
     redirect: "follow",
   };
-  const AIRTABLE_URL = `https://api.airtable.com/v0/${settings.app_id}/Pipeline?view=${encodeURI(
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${
+    settings.app_id
+  }/Pipeline?view=${encodeURI(
     "(Quick Triage API 2023)"
   )}&maxRecords=1&filterByFormula=${encodeURI(
     `SEARCH("${userEmail}",{Triage Emails Joined})=0`
@@ -150,8 +153,7 @@ const patchAirtable = async (
       ],
     }),
   };
-  const AIRTABLE_URL =
-    `https://api.airtable.com/v0/${settings.app_id}/Triage%20Thoughts`;
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${settings.app_id}/Triage%20Thoughts`;
 
   const res = await fetch(AIRTABLE_URL, requestOptions as RequestInit);
 
@@ -177,7 +179,9 @@ export const getTeamRecordId = async (email: string) => {
     headers: myHeaders,
     redirect: "follow",
   };
-  const AIRTABLE_URL = `https://api.airtable.com/v0/${settings.app_id}/Fund%20Team?view=${encodeURI(
+  const AIRTABLE_URL = `https://api.airtable.com/v0/${
+    settings.app_id
+  }/Fund%20Team?view=${encodeURI(
     "teamAPI"
   )}&maxRecords=1&filterByFormula=${encodeURI(`{Email}="${email}"`)}`;
   // console.log(AIRTABLE_URL);
@@ -186,5 +190,9 @@ export const getTeamRecordId = async (email: string) => {
   const res = await fetch(AIRTABLE_URL, requestOptions as RequestInit);
   // console.log("user search response -> ", res);
   const data = await res.json();
-  return data.records[0].id;
+  if (data.records.length > 0) {
+    return data.records[0].id;
+  } else {
+    return null;
+  }
 };

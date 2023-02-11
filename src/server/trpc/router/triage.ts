@@ -1,3 +1,5 @@
+import { TRPCClientError } from "@trpc/client";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import {
   fetchDF,
@@ -5,20 +7,25 @@ import {
   voteOnBusiness,
 } from "../../../utils/airtable";
 
-import { router, publicProcedure } from "../trpc";
+import { router, publicProcedure, protectedProcedure } from "../trpc";
 
 export const triageRouter = router({
-  getAll: publicProcedure.query(async ({ ctx }) => {
+  getAll: protectedProcedure.query(async ({ ctx }) => {
     const currentUser = await ctx.prisma.user.findUnique({
       where: { email: ctx.session?.user?.email as string },
     });
 
-    const companies = await fetchDF(currentUser?.email as string);
+    if (currentUser?.approved) {
+      const companies = await fetchDF(currentUser?.email as string);
+      return { message: "success", companies };
+    } else {
+      return {message: "unauthorised", companies: []}
+    }
     // console.log(companies);
 
-    return { message: "success", companies };
+    // return { message: "success", companies };
   }),
-  sendOpinion: publicProcedure
+  sendOpinion: protectedProcedure
     .input(
       z.object({
         companyId: z.string(),

@@ -9,13 +9,29 @@ import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import { trpc } from "../../utils/trpc";
 import Link from "next/link";
 import type { TriageCompany } from "../../utils/airtable";
+import { useRouter } from "next/router";
 
 const Triage = () => {
   const company = trpc.triage.getAll.useQuery();
+  const { data: authStatus } = trpc.auth.getAuthStatus.useQuery();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!authStatus?.authorised) {
+      router.push("/");
+    }
+  });
+
+  if (!authStatus?.authorised) {
+    return <>Unauthorised</>;
+  }
 
   if (company.status === "loading") {
     return <>loading...</>;
-  } else if (company.data.companies.length > 0) {
+  } else if (
+    company.data.companies.length > 0 &&
+    company.data?.message == "success"
+  ) {
     return (
       <>
         <Header />
@@ -95,10 +111,7 @@ const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
               body={company.isFirstRound.toString()}
             />
           ) : (
-            <DetailedSection
-              sectionName=""
-              body={""}
-            />
+            <DetailedSection sectionName="" body={""} />
           )}
 
           <DetailedSection
@@ -125,10 +138,7 @@ const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
           </div>
         )}
       </div>
-      <div
-        id="bottom"
-        className="mt-4 w-full border-t border-slate-500 py-4"
-      >
+      <div id="bottom" className="mt-4 w-full border-t border-slate-500 py-4">
         <h3>Thoughts</h3>
         <div className="my-0 flex w-full items-center justify-center">
           {sendOpinion.isLoading ? (
