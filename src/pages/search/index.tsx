@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
-import { useHotkeys } from "react-hotkeys-hook";
+
 import Back from "../../components/backButton";
 import SearchResult from "../../components/dfSearchResult";
 import NotLoggedIn from "../../components/NotLoggedIn";
