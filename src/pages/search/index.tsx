@@ -1,12 +1,14 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import Back from "../../components/backButton";
 import SearchResult from "../../components/dfSearchResult";
 import NotLoggedIn from "../../components/NotLoggedIn";
 import UniversalSearch from "../../components/universalSearch";
 import { type Company, searchForBusiness } from "../../utils/airtable";
+import settings from "../../../USER_CONFIG/settings.json";
+import Link from "next/link";
 
 const PipelineSearch = () => {
   const router = useRouter();
@@ -17,15 +19,10 @@ const PipelineSearch = () => {
   const [queryResultStatus, setQueryResultStatus] = useState<
     "success" | "no results" | "init"
   >("init");
+  const updatedLink = useMemo(() => `${settings.default_forms.new_company.link}?prefill_Company=${searchQuery}`, [searchQuery])
 
   const { data: sessionData } = useSession();
 
-  useHotkeys("meta+enter", () =>
-    window.open(
-      `https://airtable.com/shrUB5NNy0PGzPjQT?prefill_Company=${searchQuery}`,
-      "_blank"
-    )
-  );
 
   useEffect(() => {
     if (!companyName) {
@@ -35,11 +32,12 @@ const PipelineSearch = () => {
     }
   }, [companyName, router]);
 
-  const queryAirtable = async (companyName: string) => {
+  const queryAirtable = async (_companyName: string) => {
     // add query logic here
-    setSearchQuery(companyName);
+    console.log(_companyName);
+    setSearchQuery(_companyName);
     setLoading(true);
-    const results = await searchForBusiness(companyName);
+    const results = await searchForBusiness(_companyName);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     setQueryResultStatus(results.status);
@@ -74,8 +72,12 @@ const PipelineSearch = () => {
 
             {queryResultStatus === "no results" && (
               <div className="mt-4">
-                No results found... press <span className="font-bold">cmd+enter</span> to add <span className="font-fold bg-indigo-600 p-1 rounded-md mx-1">"{companyName}"</span> to the
-                pipeline{" "}
+                No results found... {" "}
+                <Link href={updatedLink} className="underline hover:opacity-70">click here</Link> to add{" "}
+                <span className="font-fold mx-1 rounded-md bg-indigo-600 p-1">
+                  "{companyName}"
+                </span>{" "}
+                to the pipeline{" "}
               </div>
             )}
           </>
