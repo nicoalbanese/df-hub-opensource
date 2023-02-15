@@ -7,6 +7,8 @@ import UniversalSearch from "../components/universalSearch";
 
 import settings from "../../USER_CONFIG/settings.json";
 import { trpc } from "../utils/trpc";
+import HomeSkeleton from "../components/skeleton";
+
 
 const Home: NextPage = () => {
   const { data: sessionData, status } = useSession();
@@ -14,7 +16,11 @@ const Home: NextPage = () => {
     trpc.auth.getAuthStatus.useQuery();
 
   if (status == "loading") {
-    return <></>;
+    return (
+      <>
+        <HomeSkeleton />
+      </>
+    );
   }
   if (status == "authenticated") {
     if (userDataStatus == "loading") {
@@ -54,10 +60,10 @@ const Home: NextPage = () => {
 
   if (status == "unauthenticated") {
     return (
-      <div className="">
+      <div className="mt-4">
         <h1>{settings.company_name} Dealflow</h1>
         <div className="mt-4">
-          <div className="mb-2">
+          <div className="mb-4">
             You are not logged in. Please sign in below.
           </div>
           <button onClick={() => signIn()} className={"btn-base"}>
@@ -67,7 +73,7 @@ const Home: NextPage = () => {
       </div>
     );
   }
-  return <>loading...</>
+  return <>loading...</>;
 };
 
 export default Home;
