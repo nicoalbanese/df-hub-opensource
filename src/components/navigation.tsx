@@ -7,6 +7,7 @@ import {
   CalculatorIcon,
   MagnifyingGlassIcon,
   RocketLaunchIcon,
+  FlagIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -31,6 +32,13 @@ const navigation = [
     name: "New Note",
     href: settings.default_forms.new_note.link,
     icon: PhoneIcon,
+    current: false,
+    isExternalLink: true,
+  },
+  {
+    name: "New Feedback Reqeust",
+    href: settings.default_forms.new_feedback_request.link,
+    icon: FlagIcon,
     current: false,
     isExternalLink: true,
   },

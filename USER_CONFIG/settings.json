@@ -1,16 +1,31 @@
 {
   "company_name": "Ascension",
   "pipelines": [
-    { "id": 1, "title": "Blended Fund", "link": "https://www.facebook.com" },
-    { "id": 2, "title": "Second Fund", "link": "https://airtable.com" },
-    { "id": 3, "title": "Third Fund", "link": "https://ascension.vc" }
+    {
+      "id": 1,
+      "title": "Pre-Seed Fund",
+      "link": "https://airtable.com/appE3jp1I3z23HEHg/tblwk4WKVcNrnMqqz/viwAnqlu8o1sWK4vB?blocks=hide"
+    },
+    {
+      "id": 2,
+      "title": "Seed Fund",
+      "link": "https://airtable.com/appE3jp1I3z23HEHg/tblwk4WKVcNrnMqqz/viwwWxgTl0aNtJrkw?blocks=hide"
+    },
+    {
+      "id": 3,
+      "title": "All Pipelines",
+      "link": "https://airtable.com/appE3jp1I3z23HEHg/tblwk4WKVcNrnMqqz/viwfB9GKfladuKUk4?blocks=hide"
+    }
   ],
   "default_forms": {
     "new_company": {
-      "link": "https://airtable.com/shrUB5NNy0PGzPjQT"
+      "link": "https://airtable.com/shrLRIuOvlFM8v2pH"
     },
     "new_note": {
-      "link": "https://airtable.com/shrJsjMXUJtKADz11"
+      "link": "https://airtable.com/shrNJPgB9cGZpwTTv"
+    },
+    "new_feedback_request": {
+      "link": "https://airtable.com/shr8ht8n1PlwBukGd"
     }
   },
   "root_url_for_record_url": "https://airtable.com/appE3jp1I3z23HEHg/tblwk4WKVcNrnMqqz/viwWiI3rigHiULS1Z/",

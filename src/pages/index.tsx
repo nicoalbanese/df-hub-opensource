@@ -34,7 +34,7 @@ const Home: NextPage = () => {
                 {settings.company_name.length > 0
                   ? settings.company_name
                   : "*PLEASE FILL IN SETTINGS.JSON*"}{" "}
-                Deaflow
+                Deal Flow
               </h1>
               <UniversalSearch />
             </div>
@@ -66,7 +66,7 @@ const Home: NextPage = () => {
           <div className="mb-4">
             You are not logged in. Please sign in below.
           </div>
-          <button onClick={() => signIn()} className={"btn-base"}>
+          <button onClick={() => signIn("google")} className={"btn-base"}>
             Sign in
           </button>
         </div>

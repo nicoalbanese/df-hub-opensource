@@ -20,9 +20,13 @@ export default function UniversalSearch({
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/search?companyName=${searchQuery}`);
-    if (router.route == "/search" && searchQuery.length > 1) {
-      queryAirtable(searchQuery);
+    if (searchQuery.length > 1) {
+      router.push(`/search?companyName=${searchQuery}`);
+      if (router.route == "/search" && searchQuery.length > 1) {
+        queryAirtable(searchQuery);
+      }
+    } else {
+      alert("Your search query must be at least 2 characters")
     }
   };
 

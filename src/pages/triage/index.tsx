@@ -13,21 +13,27 @@ import { useRouter } from "next/router";
 
 const Triage = () => {
   const company = trpc.triage.getAll.useQuery();
-  const { data: authStatus } = trpc.auth.getAuthStatus.useQuery();
+  const { data: authStatus, status: loadingStatus } =
+    trpc.auth.getAuthStatus.useQuery();
   const router = useRouter();
 
   useEffect(() => {
-    if (!authStatus?.authorised) {
-      router.push("/");
+    if (loadingStatus === "success") {
+      if (!authStatus?.authorised) {
+        router.push("/");
+      }
     }
   });
 
+  if (loadingStatus === "loading") {
+    return <div className="animate-pulse">loading...</div>
+  }
   if (!authStatus?.authorised) {
     return <>Unauthorised</>;
   }
 
   if (company.status === "loading") {
-    return <>loading...</>;
+    return <div className="my-4">loading...</div>;
   } else if (
     company.data.companies.length > 0 &&
     company.data?.message == "success"
@@ -55,7 +61,9 @@ export default Triage;
 const Header = () => {
   return (
     <div className="mb-4">
-      <Link href="/">back</Link>
+      <Link href="/" className="mb-2 inline-block hover:underline">
+        back
+      </Link>
       <h1>Triage Inbound Pipeline</h1>
     </div>
   );
@@ -123,7 +131,7 @@ const CompanyViewer: React.FC<{ company: TriageCompany }> = ({
       </div>
       <div id="middle" className="w-full py-4">
         {company.deck.includes("https://dl.airtable.com/.attachments") ? (
-          <iframe src={company.deck} width="100%" height="560px"></iframe>
+          <iframe src={company.deck} width="100%" height="560px" allowFullScreen={true}></iframe>
         ) : (
           <div>
             This deck is hosted externally. Please{" "}
