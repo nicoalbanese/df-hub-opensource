@@ -32,6 +32,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ## Todos (IN PROGRESS)
+
 - [ ] Fill in settings.json
 - [ ] Get Google OAuth Keys
 - [ ] Duplicate Airtable Base
