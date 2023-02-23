@@ -31,7 +31,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-### Todos (IN PROGRESS)
+## Todos (IN PROGRESS)
 - [ ] Fill in settings.json
 - [ ] Get Google OAuth Keys
 - [ ] Duplicate Airtable Base
