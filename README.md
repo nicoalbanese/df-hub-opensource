@@ -1,22 +1,10 @@
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnicoalbanese%2Fdf-hub-opensource.git&env=DATABASE_URL,NEXTAUTH_SECRET,NEXTAUTH_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,NEXT_PUBLIC_AIRTABLE_API_KEY&envDescription=API%20Keys%20needed%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fnicoalbanese%2Fdf-hub-opensource%2Fblob%2Fmain%2FREADME.md)
-
-### Todos
-- [ ] Fill in settings.json
-- [ ] Get Google OAuth Keys
-- [ ] Duplicate Airtable Base
-- [ ] Get Airtable Keys
-- [ ] 
-
-
 <p align="center">
     <h3 align="center">Deal Flow OS</h3>
 </p>
 
 <p align="center">
-This is an open source (ish) alternative to Affinity CRM, Attio CRM and other deal flow management systems.
+This is an open source(ish) alternative to Affinity CRM, Attio and other deal flow management systems.
 <br/>
-<a href="https://www.prisma.io/">Prisma</a> as the ORM, and a MySQL database to persist the data.</p>
 
 <br/>
 
@@ -24,15 +12,11 @@ This is an open source (ish) alternative to Affinity CRM, Attio CRM and other de
 
 You can clone & deploy it to Vercel with one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20MySQL%20Auth%20Starter&demo-description=Simple%20Next.js%2013%20starter%20kit%20that%20uses%20Next-Auth%20for%20auth%20and%20MySQL%20as%20a%20database.&demo-url=https%3A%2F%2Fnextjs-mysql-auth.vercel.app%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F7rsVQ1ZBSiWe9JGO6FUeZZ%2F210cba91036ca912b2770e0bd5d6cc5d%2Fthumbnail.png&project-name=Next.js%20MySQL%20Auth%20Starter&repository-name=nextjs-mysql-auth-starter&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnextjs-mysql-auth-starter&from=templates&skippable-integrations=1&env=DATABASE_URL%2CNEXTAUTH_SECRET&envDescription=Generate%20a%20random%20secret%3A&envLink=https%3A%2F%2Fgithub.com%2Fvercel%2Fnextjs-mysql-auth-starter%2Fblob%2Fmain%2F.env.example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnicoalbanese%2Fdf-hub-opensource.git&env=DATABASE_URL,NEXTAUTH_SECRET,NEXTAUTH_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,NEXT_PUBLIC_AIRTABLE_API_KEY&envDescription=API%20Keys%20needed%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fnicoalbanese%2Fdf-hub-opensource%2Fblob%2Fmain%2FREADME.md)
 
 ## Developing Locally
 
-You can clone & create this repo with the following command
-
-```bash
-npx create-next-app nextjs-typescript-starter --example "https://github.com/vercel/nextjs-mysql-auth-starter"
-```
+IN PROGRESS
 
 ## Getting Started
 
@@ -46,11 +30,9 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Todos (IN PROGRESS)
+- [ ] Fill in settings.json
+- [ ] Get Google OAuth Keys
+- [ ] Duplicate Airtable Base
+- [ ] Get Airtable Keys
